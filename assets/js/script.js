@@ -33,12 +33,21 @@ colorCode(idArray);
 
 
 //***************************************************** */
-// Save, load, and event handlers
+// Save and load schedule, load date, and event handlers
 
 var scheduleArray = [{id:'#eight', slotText: 'Add Task'},{id:'#nine',slotText :'Add Task'},{id:'#ten',slotText : 'Add Task'},
 {id:'#eleven',slotText: 'Add Task'},{id:'#twelve',slotText: 'Add Task'},{id:'#one',slotText: 'Add Task'},{id:'#two',slotText: 'Add Task'},
 {id:'#three',slotText: 'Add Task'},{id:'#four',slotText: 'Add Task'},{id:'#five',slotText: 'Add Task'}];
 
+var loadDate = function() {
+    // looked up how to format the date on the docs page
+    $("#currentDay").text("Today is " + moment().format("dddd, MMMM Do YYYY, h:mm:ss a"+"."));
+
+
+}
+
+
+//Save to local storage, called everytime form submitted
 var saveSchedule = function (id) {
     id = "#"+id;
     var textEl = $(id).children();
@@ -53,6 +62,8 @@ var saveSchedule = function (id) {
     
 };
 
+
+//loads schedule when page is refreshed
 var loadSchedule = function(){
     var schedule = localStorage.getItem("schedule");
     schedule = JSON.parse(schedule);
@@ -121,4 +132,6 @@ $(".container").submit(function (event) {
 
 
 loadSchedule();
+
+loadDate();
 
